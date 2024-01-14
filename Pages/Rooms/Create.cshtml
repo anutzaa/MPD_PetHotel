@@ -18,10 +18,16 @@
                 <input asp-for="Room.RoomNumber" class="form-control" />
                 <span asp-validation-for="Room.RoomNumber" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Room.isOccupied" /> @Html.DisplayNameFor(model => model.Room.isOccupied)
-                </label>
+            <div class="form-group">
+                <label asp-for="Room.Availability" class="control-label"></label>
+                <input asp-for="Room.Availability" class="form-control" />
+                <span asp-validation-for="Room.Availability" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Room.CategoryId" class="control-label">Room Type</label>
+                <select asp-for="Room.CategoryId" class="form-control" asp-items="ViewBag.CategoryId">
+                </select>
+                <span asp-validation-for="Room.CategoryId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Add Room" class="btn btn-primary" />

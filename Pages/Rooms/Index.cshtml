@@ -17,7 +17,10 @@
                 @Html.DisplayNameFor(model => model.Room[0].RoomNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Room[0].isOccupied)
+                @Html.DisplayNameFor(model => model.Room[0].Availability)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].Category.CategoryName)
             </th>
             <th></th>
         </tr>
@@ -29,10 +32,13 @@
                 @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.isOccupied)
+                @Html.DisplayFor(modelItem => item.Availability)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room</a> |
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room Details</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Room Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete Room</a>
             </td>

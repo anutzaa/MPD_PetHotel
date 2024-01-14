@@ -23,7 +23,8 @@ namespace PetHotel.Pages.Rooms
 
         public async Task OnGetAsync()
         {
-            Room = await _context.Room.ToListAsync();
+            Room = await _context.Room
+                .Include(r => r.Category).ToListAsync();
         }
     }
 }

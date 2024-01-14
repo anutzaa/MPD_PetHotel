@@ -36,6 +36,7 @@ namespace PetHotel.Pages.Rooms
                 return NotFound();
             }
             Room = room;
+           ViewData["CategoryId"] = new SelectList(_context.Type, "Id", "Id");
             return Page();
         }
 

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>Room Details</h1>
 
 <div>
     <h4>Room</h4>
@@ -18,14 +18,20 @@
             @Html.DisplayFor(model => model.Room.RoomNumber)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Room.isOccupied)
+            @Html.DisplayNameFor(model => model.Room.Availability)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.isOccupied)
+            @Html.DisplayFor(model => model.Room.Availability)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Room.Category)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Room.Category.Id)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Room.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.Room.Id">Edit Room Details</a> |
+    <a asp-page="./Index">Back to Rooms List</a>
 </div>

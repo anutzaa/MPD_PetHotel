@@ -21,6 +21,7 @@ namespace PetHotel.Pages.Rooms
 
         public IActionResult OnGet()
         {
+            ViewData["CategoryId"] = new SelectList(_context.Set<Category>(), "Id", "CategoryName");
             return Page();
         }
 

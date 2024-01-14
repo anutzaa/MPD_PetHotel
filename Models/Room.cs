@@ -9,8 +9,7 @@ namespace PetHotel.Models
         [Display(Name = "Room Number")]
         public string RoomNumber { get; set; }
 
-        [Display(Name = "Availability")]
-        public bool isOccupied { get; set; }
+        public int Availability { get; set; }
 
         [Display(Name = "Room Type")]
         public int? CategoryId { get; set; }
