@@ -1,0 +1,42 @@
+﻿@page
+@model PetHotel.Pages.Rooms.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Rooms List</h1>
+
+<p>
+    <a asp-page="Create">Add New Room</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].RoomNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Room[0].isOccupied)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Room) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isOccupied)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Room Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Room</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,65 @@
+﻿@page
+@model PetHotel.Pages.Pets.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Pet Details</h1>
+
+<h4>Pet</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Pet.Id" />
+            <div class="form-group">
+                <label asp-for="Pet.Name" class="control-label"></label>
+                <input asp-for="Pet.Name" class="form-control" />
+                <span asp-validation-for="Pet.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pet.Species" class="control-label"></label>
+                <input asp-for="Pet.Species" class="form-control" />
+                <span asp-validation-for="Pet.Species" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pet.Race" class="control-label"></label>
+                <input asp-for="Pet.Race" class="form-control" />
+                <span asp-validation-for="Pet.Race" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pet.Age" class="control-label"></label>
+                <input asp-for="Pet.Age" class="form-control" />
+                <span asp-validation-for="Pet.Age" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pet.Sex" class="control-label"></label>
+                <input asp-for="Pet.Sex" class="form-control" />
+                <span asp-validation-for="Pet.Sex" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Pet.OwnerId" class="control-label">Owner Name</label>
+                <select asp-for="Pet.OwnerId" class="form-control" asp-items="ViewBag.OwnerId">
+                </select>
+                <span asp-validation-for="Pet.OwnerId" class="text-danger"></span>
+            <div class="form-group">
+                <label asp-for="Pet.Comments" class="control-label"></label>
+                <input asp-for="Pet.Comments" class="form-control" />
+                <span asp-validation-for="Pet.Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to Pet List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

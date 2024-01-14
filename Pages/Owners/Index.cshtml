@@ -1,0 +1,48 @@
+﻿@page
+@model PetHotel.Pages.Owners.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Owners List</h1>
+
+<p>
+    <a asp-page="Create">Add New Owner</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner[0].OwnerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner[0].Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner[0].Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Owner) {
+        <tr>
+            <td>
+                    @Html.DisplayFor(modelItem => item.OwnerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Owner</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Owner Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete Owner</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

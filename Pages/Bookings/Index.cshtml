@@ -1,0 +1,54 @@
+﻿@page "/"
+@model PetHotel.Pages.Bookings.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>All Bookings</h1>
+
+<p>
+    <a asp-page="Create">Add New Booking</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].CheckOut)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Pet)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Booking[0].Room)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Booking) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckIn)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CheckOut)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pet.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Room.Id)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Booking</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Booking Details</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Booking</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

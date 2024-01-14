@@ -1,0 +1,44 @@
+﻿@page
+@model PetHotel.Pages.Owners.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Add New Owner</h1>
+
+<h4>Owner</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Owner.OwnerName" class="control-label"></label>
+                <input asp-for="Owner.OwnerName" class="form-control" />
+                <span asp-validation-for="Owner.OwnerName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Owner.Phone" class="control-label"></label>
+                <input asp-for="Owner.Phone" class="form-control" />
+                <span asp-validation-for="Owner.Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Owner.Email" class="control-label"></label>
+                <input asp-for="Owner.Email" class="form-control" />
+                <span asp-validation-for="Owner.Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add Owner" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Back to Owner List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

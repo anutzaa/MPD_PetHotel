@@ -1,0 +1,50 @@
+﻿@page
+@model PetHotel.Pages.Bookings.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Booking Details</h1>
+
+<h4>Booking</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Booking.Id" />
+            <div class="form-group">
+                <label asp-for="Booking.CheckIn" class="control-label"></label>
+                <input asp-for="Booking.CheckIn" class="form-control" />
+                <span asp-validation-for="Booking.CheckIn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.CheckOut" class="control-label"></label>
+                <input asp-for="Booking.CheckOut" class="form-control" />
+                <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.PetId" class="control-label"></label>
+                <select asp-for="Booking.PetId" class="form-control" asp-items="ViewBag.PetId"></select>
+                <span asp-validation-for="Booking.PetId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Booking.RoomId" class="control-label"></label>
+                <select asp-for="Booking.RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                <span asp-validation-for="Booking.RoomId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
