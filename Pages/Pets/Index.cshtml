@@ -14,25 +14,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Name)
+                @Html.DisplayNameFor(model => model.Pet[0].PetName)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pet[0].Species)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Race)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Pet[0].Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Sex)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Pet[0].Owner.OwnerName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Comments)
+                @Html.DisplayNameFor(model => model.Pet[0].hasSpecialNeeds)
             </th>
             <th></th>
         </tr>
@@ -41,25 +35,19 @@
 @foreach (var item in Model.Pet) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                    @Html.DisplayFor(modelItem => item.PetName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Species)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Race)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Sex)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Owner.OwnerName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Comments)
+                    @Html.DisplayFor(modelItem => item.hasSpecialNeeds)
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Pet</a> |

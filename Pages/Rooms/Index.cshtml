@@ -17,7 +17,7 @@
                 @Html.DisplayNameFor(model => model.Room[0].RoomNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Room[0].Availability)
+                @Html.DisplayNameFor(model => model.Room[0].isOccupied)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Room[0].Category.CategoryName)
@@ -32,7 +32,7 @@
                 @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Availability)
+                @Html.DisplayFor(modelItem => item.isOccupied)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)

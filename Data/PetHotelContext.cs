@@ -46,7 +46,7 @@ namespace PetHotel.Data
                 entity.Property(r => r.Id).HasColumnName("RoomId"); 
 
                 entity.Property(r => r.RoomNumber).HasColumnName("RoomNumber"); 
-                entity.Property(r => r.Availability).HasColumnName("Availability"); 
+                entity.Property(r => r.isOccupied).HasColumnName("Availability"); 
 
                 entity.HasOne(r => r.Category)
                     .WithMany(c => c.Rooms)

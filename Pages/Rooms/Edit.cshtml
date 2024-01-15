@@ -20,9 +20,16 @@
                 <span asp-validation-for="Room.RoomNumber" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Room.Availability" class="control-label"></label>
-                <input asp-for="Room.Availability" class="form-control" />
-                <span asp-validation-for="Room.Availability" class="text-danger"></span>
+                <label asp-for="Room.isOccupied" class="control-label">Availability</label>
+                <div class="form-check">
+                    <input type="radio" asp-for="Room.isOccupied" value="true" class="form-check-input" />
+                    <label class="form-check-label" asp-for="Room.isOccupied">Yes</label>
+                </div>
+                <div class="form-check">
+                    <input type="radio" asp-for="Room.isOccupied" value="false" class="form-check-input" />
+                    <label class="form-check-label" asp-for="Room.isOccupied">No</label>
+                </div>
+                <span asp-validation-for="Room.isOccupied" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Room.CategoryId" class="control-label"></label>

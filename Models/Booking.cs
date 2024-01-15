@@ -5,6 +5,7 @@ namespace PetHotel.Models
     public class Booking
     {
         public int Id { get; set; }
+        public string Description { get; set; }
 
         [Display(Name ="Check-in date")]
         public DateTime CheckIn { get; set; }
@@ -12,7 +13,7 @@ namespace PetHotel.Models
         [Display(Name = "Check-out date")]
         public DateTime CheckOut { get; set; }
 
-        //nav properties & foreign keys
+        //foreign keys
         public int? PetId { get; set; }
         public Pet? Pet { get; set; }
 

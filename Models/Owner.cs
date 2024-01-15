@@ -12,6 +12,6 @@ namespace PetHotel.Models
         public string Email { get; set; }
 
         //navigation properties:
-        public ICollection<Pet>? Pets { get; set; } = new List<Pet>();
+        public ICollection<Pet>? Pets { get; set; } //= new List<Pet>();
     }
 }

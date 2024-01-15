@@ -12,10 +12,10 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pet.Name)
+            @Html.DisplayNameFor(model => model.Pet.PetName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pet.Name)
+            @Html.DisplayFor(model => model.Pet.PetName)
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Pet.Species)
@@ -24,22 +24,10 @@
             @Html.DisplayFor(model => model.Pet.Species)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pet.Race)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pet.Race)
-        </dd>
-        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Pet.Age)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Pet.Age)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pet.Sex)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pet.Sex)
         </dd>
         </dd>
         <dt class="col-sm-2">
@@ -49,10 +37,10 @@
             @Html.DisplayFor(model => model.Pet.Owner.OwnerName)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Pet.Comments)
+            @Html.DisplayNameFor(model => model.Pet.hasSpecialNeeds)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pet.Comments)
+            @Html.DisplayFor(model => model.Pet.hasSpecialNeeds)
         </dd>
     </dl>
 </div>
