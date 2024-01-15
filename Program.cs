@@ -1,12 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using PetHotel.Data;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages()
+builder.Services.AddRazorPages(options =>
+{
+    options.Conventions.AuthorizeFolder("/Bookings");
+})
     .AddMvcOptions(options =>
     {
         options.ModelMetadataDetailsProviders.Add(
@@ -16,6 +20,16 @@ builder.Services.AddRazorPages()
 builder.Services.AddDbContext<PetHotelContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("PetHotelContext")
         ?? throw new InvalidOperationException("Connection string 'PetHotelContext' not found.")));
+
+builder.Services.AddDbContext<IdentityContext>(options =>
+
+options.UseSqlServer(builder.Configuration.GetConnectionString("PetHotelContext") ?? throw new InvalidOperationException("Connection string 'PetHotelContext' not found."))); 
+
+
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options =>
+options.SignIn.RequireConfirmedAccount = true)
+    .AddEntityFrameworkStores<IdentityContext>();
 
 var app = builder.Build();
 
