@@ -28,7 +28,11 @@ namespace PetHotel.Pages.Bookings
                 return NotFound();
             }
 
-            var booking = await _context.Booking.FirstOrDefaultAsync(m => m.Id == id);
+            var booking = await _context.Booking
+                .Include(e => e.Pet)
+                .Include (e => e.Room)
+                    .ThenInclude (ec => ec.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (booking == null)
             {
                 return NotFound();

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.CodeAnalysis;
 
 namespace PetHotel.Models
 {
@@ -13,7 +14,9 @@ namespace PetHotel.Models
 
         [Display(Name = "Age in months")]
         public int Age { get; set; }
-   
+
+
+        [Display(Name = "Special needs")]
         public bool hasSpecialNeeds { get; set; }
 
         //navigation property for Owner

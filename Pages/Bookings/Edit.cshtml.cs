@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -30,14 +27,22 @@ namespace PetHotel.Pages.Bookings
                 return NotFound();
             }
 
-            var booking =  await _context.Booking.FirstOrDefaultAsync(m => m.Id == id);
+            var booking = await _context.Booking
+                .Include(b => b.Pet)
+                .Include(b => b.Room)
+                    .ThenInclude(r => r.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
+
             if (booking == null)
             {
                 return NotFound();
             }
+
             Booking = booking;
-           ViewData["PetId"] = new SelectList(_context.Pet, "Id", "Id");
-           ViewData["RoomId"] = new SelectList(_context.Room, "Id", "Id");
+
+            ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName");
+            ViewData["RoomId"] = new SelectList(_context.Room.Include(r => r.Category).Where(r => r.isOccupied == true), "Id", "DisplayText");
+
             return Page();
         }
 
@@ -47,6 +52,8 @@ namespace PetHotel.Pages.Bookings
         {
             if (!ModelState.IsValid)
             {
+                ViewData["PetId"] = new SelectList(_context.Set<Pet>(), "Id", "PetName");
+                ViewData["RoomId"] = new SelectList(_context.Room.Include(r => r.Category).Where(r => r.isOccupied == true), "Id", "DisplayText");
                 return Page();
             }
 

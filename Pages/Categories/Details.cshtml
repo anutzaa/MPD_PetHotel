@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Room Type Details</h1>
+<h1>Edit Room Type Details</h1>
 
 <div>
     <h4>Room Type</h4>
@@ -23,9 +23,17 @@
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Category.Price)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Category.Description)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Category.Description)
+        </dd>
     </dl>
 </div>
+<img src="@Model.Category.Image" alt="Room Image" class="img-fluid" />
+<br />
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit Room Type</a> |
+    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit Details</a> |
     <a asp-page="./Index">Back to Room Types List</a>
 </div>

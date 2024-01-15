@@ -22,19 +22,30 @@
             @Html.DisplayNameFor(model => model.Room.isOccupied)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.isOccupied)
+            @if (Model.Room.isOccupied)
+            {
+                <text>Available</text>
+            }
+            else
+            {
+                <text>Not available</text>
+            }
         </dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Room.Category)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Room.Category.Id)
+            @Html.DisplayFor(model => model.Room.Category.CategoryName)
         </dd>
     </dl>
-    
+
+    <br />
+    <img src="@Model.Room.Category.Image" alt="Room Image" class="img-fluid"/>
+    <br />
+
     <form method="post">
         <input type="hidden" asp-for="Room.Id" />
-        <input type="submit" value="Delete Room" class="btn btn-danger" /> |
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
         <a asp-page="./Index">Back to Rooms List</a>
     </form>
 </div>

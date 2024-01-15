@@ -32,7 +32,14 @@
                 @Html.DisplayFor(modelItem => item.RoomNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.isOccupied)
+                    @if (item.isOccupied)
+                    {
+                        <text>Available</text>
+                    }
+                    else
+                    {
+                        <text>Not available</text>
+                    }
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Category.CategoryName)
@@ -40,7 +47,7 @@
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room Details</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Room Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Room</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }

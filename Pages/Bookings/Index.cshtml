@@ -28,6 +28,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Booking[0].Room)
             </th>
+            <th>
+                Total price
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -35,16 +38,33 @@
 @foreach (var item in Model.Booking) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.CheckIn)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CheckOut)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Pet.Id)
+                @Html.DisplayFor(modelItem => item.Pet.PetName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Room.Id)
+                @Html.DisplayFor(modelItem => item.Room.DisplayText)
+            </td>
+            <td>
+                    @if (item.Room != null && item.Room.Category != null)
+                    {
+                        TimeSpan span = item.CheckOut - item.CheckIn;
+                        int numberOfDays = (int)Math.Ceiling(span.TotalDays);
+
+                        decimal totalPrice = numberOfDays * item.Room.Category.Price;
+                        @($"{totalPrice:N2} RON")
+                    }
+                    else
+                    {
+                        <text>N/A</text>
+                    }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Booking</a> |

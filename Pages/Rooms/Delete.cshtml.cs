@@ -29,7 +29,9 @@ namespace PetHotel.Pages.Rooms
                 return NotFound();
             }
 
-            var room = await _context.Room.FirstOrDefaultAsync(m => m.Id == id);
+            var room = await _context.Room
+                .Include(e => e.Category)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (room == null)
             {

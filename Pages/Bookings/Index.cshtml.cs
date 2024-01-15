@@ -24,8 +24,10 @@ namespace PetHotel.Pages.Bookings
         public async Task OnGetAsync()
         {
             Booking = await _context.Booking
-                .Include(b => b.Pet)
-                .Include(b => b.Room).ToListAsync();
+            .Include(b => b.Pet)
+            .Include(b => b.Room)
+                .ThenInclude(r => r.Category)
+            .ToListAsync();
         }
     }
 }

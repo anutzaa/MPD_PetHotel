@@ -29,11 +29,11 @@
                 <span asp-validation-for="Booking.CheckOut" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Booking.PetId" class="control-label"></label>
+                <label asp-for="Booking.PetId" class="control-label">Pet Name</label>
                 <select asp-for="Booking.PetId" class ="form-control" asp-items="ViewBag.PetId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Booking.RoomId" class="control-label"></label>
+                <label asp-for="Booking.RoomId" class="control-label">Room Number</label>
                 <select asp-for="Booking.RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
             </div>
             <div class="form-group">

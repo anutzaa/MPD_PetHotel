@@ -40,7 +40,14 @@
             @Html.DisplayNameFor(model => model.Pet.hasSpecialNeeds)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Pet.hasSpecialNeeds)
+            @if (Model.Pet.hasSpecialNeeds)
+            {
+                <text>Yes</text>
+            }
+            else
+            {
+                <text>No</text>
+            }
         </dd>
     </dl>
 </div>

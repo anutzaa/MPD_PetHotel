@@ -15,31 +15,49 @@
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Booking.Description)
         </dt>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Booking.CheckIn)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.CheckIn)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Booking.CheckOut)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.CheckOut)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Booking.Pet)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.Pet.Id)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Booking.Room)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Booking.Room.Id)
-        </dd>
-    </dl>
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Booking.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Booking.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Booking.CheckIn)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Booking.CheckIn)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Booking.CheckOut)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Booking.CheckOut)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Booking.Pet)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Booking.Pet.PetName)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Booking.Room)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Booking.Room.DisplayText)
+            </dd>
+            <dt class="col-sm-2">
+                Total Price
+            </dt>
+            <dd class="col-sm-10">
+                @{
+                    TimeSpan span = Model.Booking.CheckOut - Model.Booking.CheckIn;
+                    int numberOfDays = (int)Math.Ceiling(span.TotalDays);
+                    decimal totalPrice = numberOfDays * Model.Booking.Room.Category.Price;
+                }
+                @($"{totalPrice:N2} RON")
+            </dd>
+        </dl>
     
     <form method="post">
         <input type="hidden" asp-for="Booking.Id" />

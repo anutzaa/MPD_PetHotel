@@ -11,20 +11,22 @@ namespace PetHotel.Models
         [Display(Name = "Room Number")]
         public string RoomNumber { get; set; }
 
-        public string? Image {  get; set; }
-
-        [NotMapped]
-        [Display(Name = "Image")]
-        [Required(ErrorMessage ="Please upload an image.")]
-        public IFormFile? ImageFile { get; set; }
-
+        [Display (Name = "Availability")]
         public bool isOccupied { get; set; }
-        public string Description { get; set; }
 
 
         //foreign key
         [Display(Name = "Room Type")]
         public int? CategoryId { get; set; }
         public Category? Category { get; set; }
+
+        [NotMapped]
+        public string DisplayText
+        {
+            get
+            {
+                return $"{RoomNumber} - {Category?.CategoryName}";
+            }
+        }
     }
 }

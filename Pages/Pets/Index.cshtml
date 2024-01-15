@@ -47,7 +47,14 @@
                 @Html.DisplayFor(modelItem => item.Owner.OwnerName)
             </td>
             <td>
-                    @Html.DisplayFor(modelItem => item.hasSpecialNeeds)
+                    @if (item.hasSpecialNeeds)
+                    {
+                        <text>Yes</text>
+                    }
+                    else
+                    {
+                        <text>No</text>
+                    }
             </td>
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Pet</a> |
