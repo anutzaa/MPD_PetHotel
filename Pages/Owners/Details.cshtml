@@ -36,16 +36,35 @@
     <h4>Pets</h4>
     <hr />
     <ul>
-        @foreach (var pet in Model.Owner.Pets) //exception here
+        @foreach (var pet in Model.Owner.Pets)
         {
             <li>
-                @Html.DisplayFor(modelItem => pet.PetName)
+                <strong>@Html.DisplayFor(modelItem => pet.PetName)</strong>
             </li>
         }
     </ul>
 </div>
 
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Owner.Id">Edit Owner Details</a> |
-    <a asp-page="./Index">Back to Owner List</a>
+    <h4>Bookings</h4>
+    <hr />
+    <div>
+        @foreach (var pet in Model.Owner.Pets)
+        {
+            <h5>@Html.DisplayFor(modelItem => pet.PetName)'s Bookings</h5>
+            <ul>
+                @foreach (var booking in pet.Bookings)
+                {
+                    <li>
+                        Booking: @Html.DisplayFor(modelItem => booking.Description)
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>
+<div>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.Owner.Id">
+        Edit</a>
+    <a class="btn btn-warning" asp-page="./Index">Back to Owner List</a>
 </div>

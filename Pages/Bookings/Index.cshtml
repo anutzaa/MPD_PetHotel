@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page 
 @model PetHotel.Pages.Bookings.IndexModel
 
 @{
@@ -16,60 +16,26 @@ else
 <p>
     @if (User.IsInRole("Admin"))
     {
-        <a asp-page="Create">Add New Booking</a>
+        <a class="btn btn-dark" asp-page="Create">Add New Booking</a>
     }
     else
     {
-        <a asp-page="/Bookings/UserBooking">Request a New Booking</a>
+        <a class="btn btn-dark" asp-page="/Bookings/UserBooking">Request a New Booking</a>
     }
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].CheckIn)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].CheckOut)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Pet)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Booking[0].Room)
-            </th>
-            <th>
-                Total price
-            </th>
-            @if (User.IsInRole("Admin"))
-            {
-                <th></th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Booking) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckIn)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CheckOut)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Pet.PetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Room.DisplayText)
-            </td>
-            <td>
-                    @if (item.Room != null && item.Room.Category != null)
+<div class="tab-container">
+    @foreach (var item in Model.Booking)
+    {
+        <div class="tab">
+            <div class="tab-content">
+                <h3>@Html.DisplayFor(modelItem => item.Description)</h3>
+                <p><b>Check-in:</b> @Html.DisplayFor(modelItem => item.CheckIn)</p>
+                <p><b>Check out: </b> @Html.DisplayFor(modelItem => item.CheckOut)</p>
+                <p><b>Pet Name: </b> @Html.DisplayFor(modelItem => item.Pet.PetName)</p>
+            <p><b>Room:</b> @Html.DisplayFor(modelItem => item.Room.DisplayText)
+    </p>
+                <p>
+                    <b>Total price: </b>@if (item.Room != null && item.Room.Category != null)
                     {
                         TimeSpan span = item.CheckOut - item.CheckIn;
                         int numberOfDays = (int)Math.Ceiling(span.TotalDays);
@@ -81,16 +47,18 @@ else
                     {
                         <text>N/A</text>
                     }
-            </td>
+                </p>
                 @if (User.IsInRole("Admin"))
                 {
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Booking</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Booking Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Booking</a>
-            </td>
+                    <div style="text-align: center;">
+                        <p><a class="btn btn-success" style="display: block; margin-bottom: 3px;" asp-page="./Edit" asp-route-id="@item.Id">Edit Booking</a></p>
+                        <p>
+                            <a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="./Details" asp-route-id="@item.Id">Booking Details</a>
+                        </p>
+                        <p><a class="btn btn-danger" style="display: block; margin-bottom: 3px;" asp-page="./Delete" asp-route-id="@item.Id">Delete Booking</a></p>
+                    </div>
                 }
-        </tr>
-}
-    </tbody>
-</table>
+            </div>
+        </div>
+    }
+</div>

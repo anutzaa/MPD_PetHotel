@@ -5,50 +5,35 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Rooms List</h1>
+<h1>All Rooms</h1>
+
 <p>
-    <a asp-page="Create">Add New Room</a>
+    <a class="btn btn-dark" asp-page="Create">Add New Room</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Room[0].RoomNumber)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room[0].isOccupied)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room[0].Category.CategoryName)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Room) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoomNumber)
-            </td>
-            <td>
-                    @if (item.isOccupied)
+<div class="tab-container">
+    @foreach (var item in Model.Room)
+    {
+        <div class="tab">
+            <img src="@item.Category.Image" alt="@item.Category.CategoryName" class="tab-image" height="150px" width="325px" />
+            <div class="tab-content">
+                <h3>Room @Html.DisplayFor(modelItem => item.RoomNumber)</h3>
+                <p><b>Status: </b>@if (item.isOccupied)
                     {
                         <text>Available</text>
                     }
                     else
                     {
                         <text>Not available</text>
-                    }
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room Details</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Room Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+                    }</p>
+                <p><b>Category: </b> @Html.DisplayFor(modelItem => item.Category.CategoryName)</p>
+                <div style="text-align: center;">
+                    <p><a class="btn btn-success" style="display: block; margin-bottom: 3px;" asp-page="./Edit" asp-route-id="@item.Id">Edit Room Details</a></p>
+                    <p>
+                        <a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="./Details" asp-route-id="@item.Id">View Room Details</a>
+                    </p>
+                    <p><a class="btn btn-danger" style="display: block; margin-bottom: 3px;" asp-page="./Delete" asp-route-id="@item.Id">Delete Room</a></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

@@ -1,0 +1,35 @@
+﻿@page "/"
+@model PetHotel.Pages.HomePageModel
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<h1 style="text-align:center;">Welcome to Pet Hotel!</h1>
+
+<section style="text-align:center;">
+    <p>
+        Thank you for choosing our pet hotel, where your furry friends receive the best care and attention. Our experienced staff is dedicated to ensuring a comfortable and enjoyable stay for your pets.
+    </p>
+</section>
+
+<section style="text-align:center;">
+    <h3>Explore Rooms</h3>
+    <p>
+        Discover our luxurious and comfortable rooms designed to cater to the unique needs of your pets. We offer a variety of accommodations to make their stay enjoyable.
+    </p>
+    <a class="btn btn-info" asp-page="/Categories/Index">See Our Rooms</a>
+</section>
+<br />
+<section style="text-align:center;">
+    <h3>Manage Your Bookings</h3>
+    <p>
+        Conveniently manage your bookings online. Whether you're planning a weekend getaway or an extended vacation, our booking system makes it easy to secure a spot for your pets.
+    </p>
+    <a class="btn btn-info" asp-page="/Bookings/Index">Manage Bookings</a>
+</section>
+
+<br />
+<section style="text-align:center;">
+    <img src="~/images/pet_hotel.jpg" alt="Pet Hotel Image" style="max-width: 100%;" />
+</section>

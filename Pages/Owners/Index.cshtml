@@ -5,42 +5,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Owners List</h1>
+<h1>All Owners</h1>
 
-<p>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner[0].OwnerName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner[0].Phone)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Owner[0].Email)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Owner) {
-        <tr>
-            <td>
-                    @Html.DisplayFor(modelItem => item.OwnerName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Owner</a> |
-                    <a asp-page="./Details" asp-route-id="@item.Id">Owner Details</a> |
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<div class="tab-container">
+    @foreach (var item in Model.Owner)
+    {
+        <div class="tab">
+            <div class="tab-content">
+                <h3>@Html.DisplayFor(modelItem => item.OwnerName)</h3>
+                <p>Phone: @Html.DisplayFor(modelItem => item.Phone)</p>
+                <p>Email: @Html.DisplayFor(modelItem => item.Email)</p>
+                    <div style="text-align: center;">
+                        <p><a class="btn btn-success" style="display: block; margin-bottom: 3px;" asp-page="./Edit" asp-route-id="@item.Id">Edit Owner Details</a></p>
+                        <p>
+                            <a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="./Details" asp-route-id="@item.Id">View Owner Details</a>
+                        </p>
+                    </div>
+            </div>
+        </div>
+    }
+</div>

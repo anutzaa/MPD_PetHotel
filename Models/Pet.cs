@@ -24,5 +24,8 @@ namespace PetHotel.Models
         public int? OwnerId { get; set; }
         public Owner? Owner { get; set; }
 
+        // Navigation property
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }
+

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Add New Room</h1>
 
 <h4>Room</h4>
 <hr />
@@ -35,14 +35,14 @@
                 <select asp-for="Room.CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Add Room" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-page="Index">Back to List</a>
+    <a class="btn btn-warning" asp-page="Index">Back to Rooms List</a>
 </div>
 
 @section Scripts {

@@ -5,7 +5,7 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Edit Room Type Details</h1>
+<h1>View Room Type Details</h1>
 
 <div>
     <h4>Room Type</h4>
@@ -33,7 +33,8 @@
 </div>
 <img src="@Model.Category.Image" alt="Room Image" class="img-fluid" />
 <br />
+<br />
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit Details</a> |
-    <a asp-page="./Index">Back to Room Types List</a>
+    <a class="btn btn-success" asp-page="./Edit" asp-route-id="@Model.Category.Id">Edit</a>
+    <a class="btn btn-warning" asp-page="./Index">Back to Room Types List</a>
 </div>

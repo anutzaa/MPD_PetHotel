@@ -4,8 +4,17 @@
 @{
     ViewData["Title"] = "Index";
 }
-
-<h1>Room Types</h1>
+@if (User.IsInRole("Admin"))
+{
+    <h1>All Room Types</h1>
+    <p>
+        <a class="btn btn-dark" asp-page="Create">Add New Room Type</a>
+    </p>
+}
+else
+{
+    <h1>Explore Rooms</h1>
+}
 <div class="tab-container">
     @foreach (var item in Model.Category)
     {
@@ -15,13 +24,20 @@
                 <h3>@Html.DisplayFor(modelItem => item.CategoryName)</h3>
                 <p>@Html.DisplayFor(modelItem => item.Price) RON per day</p>
                 <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                <br />
+                @if (!User.IsInRole("Admin"))
+                {
+                    <p><a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="/Bookings/UserBooking">Book Now</a></p>
+                }
                 @if (User.IsInRole("Admin"))
                 {
                     <div>
-                        <div>
-                            <button class="edit-button" asp-page="./Edit" asp-route-id="@item.Id">Edit Room Type</button><br />
-                            <button class="details-button" asp-page="./Details" asp-route-id="@item.Id">Room Type Details</button><br />
-                            <button class="delete-button" asp-page="./Delete" asp-route-id="@item.Id">Delete Room Type</button>
+                        <div style="text-align: center;">
+                            <p><a class="btn btn-success" style="display: block; margin-bottom: 3px;" asp-page="./Edit" asp-route-id="@item.Id">Edit Room Type Details</a></p>
+                            <p>
+                                <a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="./Details" asp-route-id="@item.Id">View Room Type Details</a>
+                            </p>
+                            <p><a class="btn btn-danger" style="display: block; margin-bottom: 3px;" asp-page="./Delete" asp-route-id="@item.Id">Delete Room Type</a></p>
                         </div>
                     </div>
                 }
@@ -29,3 +45,4 @@
         </div>
     }
 </div>
+

@@ -28,7 +28,11 @@ namespace PetHotel.Pages.Owners
                 return NotFound();
             }
 
-            var owner = await _context.Owner.FirstOrDefaultAsync(m => m.Id == id);
+            var owner = await _context.Owner
+             .Include(o => o.Pets)
+                 .ThenInclude(p => p.Bookings)
+             .FirstOrDefaultAsync(m => m.Id == id);
+
             if (owner == null)
             {
                 return NotFound();

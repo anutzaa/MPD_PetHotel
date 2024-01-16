@@ -5,77 +5,50 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Pet List</h1>
+
 @if (User.IsInRole("Admin"))
 {
+    <h1>All Pets</h1>
     <p>
-        <a asp-page="Create">Add New Pet</a>
+        <a class = "btn btn-dark" asp-page="Create">Add New Pet</a>
     </p>
 }
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].PetName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Species)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Age)
-            </th>
-            @if (User.IsInRole("Admin"))
-            {
-                <th>
-                    @Html.DisplayNameFor(model => model.Pet[0].Owner.OwnerName)
-                </th>
-            }
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].hasSpecialNeeds)
-            </th>
-            @if (User.IsInRole("Admin"))
-            {
-                <th></th>
-            }
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Pet) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.PetName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Species)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
+else
+{
+    <h1>My Pets</h1>
+}
+<div class="tab-container">
+    @foreach (var item in Model.Pet)
+    {
+        <div class="tab">
+            <div class="tab-content">
+                <h3>@Html.DisplayFor(modelItem => item.PetName)</h3>
+                <p><b>Species: </b> @Html.DisplayFor(modelItem => item.Species)</p>
+                <p><b>Age: </b> @Html.DisplayFor(modelItem => item.Age) months</p>
                 @if (User.IsInRole("Admin"))
                 {
-                    <th>
-                        @Html.DisplayFor(modelItem => item.Owner.OwnerName)
-                    </th>
+                    <p><b>Owner: </b>@Html.DisplayFor(modelItem => item.Owner.OwnerName)</p>
                 }
-            <td>
-                    @if (item.hasSpecialNeeds)
+                <p>
+                    <b>Special Needs:</b> @if(item.hasSpecialNeeds)
                     {
                         <text>Yes</text>
                     }
                     else
                     {
                         <text>No</text>
-                    }
-            </td>
+                    }</p>
                 @if (User.IsInRole("Admin"))
                 {
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Pet</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Pet Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Pet</a>
-            </td>
+                    <div style="text-align: center;">
+                        <p><a class="btn btn-success" style="display: block; margin-bottom: 3px;" asp-page="./Edit" asp-route-id="@item.Id">Edit Pet Details</a></p>
+                        <p>
+                            <a class="btn btn-info" style="display: block; margin-bottom: 3px;" asp-page="./Details" asp-route-id="@item.Id">Pet Details</a>
+                        </p>
+                        <p><a class="btn btn-danger" style="display: block; margin-bottom: 3px;" asp-page="./Delete" asp-route-id="@item.Id">Delete Pet</a></p>
+                    </div>
                 }
-        </tr>
-}
-    </tbody>
-</table>
+            </div>
+        </div>
+    }
+</div>

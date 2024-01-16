@@ -24,7 +24,7 @@
 }
 
 .edit-button {
-    background-color: #FFFF66;
+    background-color: #52A666;
     color: black;
 }
 
@@ -39,8 +39,14 @@
 }
 
 button {
-    padding: 3px;
+    padding: 7px;
     margin: 5px;
     border-radius: 5px;
     position: center;
+    border: none;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
 }
