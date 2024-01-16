@@ -6,10 +6,18 @@ using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminPolicy", policy =>
+policy.RequireRole("Admin"));
+});
+
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Bookings");
+    options.Conventions.AllowAnonymousToPage("/Categories/Index");
+    options.Conventions.AllowAnonymousToPage("/Categories/Details");
+    options.Conventions.AuthorizeFolder("/Owners", "AdminPolicy");
 })
     .AddMvcOptions(options =>
     {
@@ -29,6 +37,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("PetHotelContext"
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
 options.SignIn.RequireConfirmedAccount = true)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IdentityContext>();
 
 var app = builder.Build();

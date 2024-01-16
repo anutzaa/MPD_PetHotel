@@ -8,9 +8,11 @@ namespace PetHotel.Models
         public string Description { get; set; }
 
         [Display(Name ="Check-in date")]
+        [DataType(DataType.Date)]
         public DateTime CheckIn { get; set; }
 
         [Display(Name = "Check-out date")]
+        [DataType(DataType.Date)]
         public DateTime CheckOut { get; set; }
 
         //foreign keys
