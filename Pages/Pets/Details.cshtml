@@ -30,12 +30,15 @@
             @Html.DisplayFor(model => model.Pet.Age)
         </dd>
         </dd>
+        @if (User.IsInRole("Admin"))
+        {
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Pet.Owner.OwnerName)
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Pet.Owner.OwnerName)
         </dd>
+        }
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.Pet.hasSpecialNeeds)
         </dt>

@@ -5,44 +5,27 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Room Types List</h1>
-
-<p>
-    <a asp-page="Create">Add New Room Type</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Category[0].CategoryName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category[0].Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category[0].Description)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model.Category) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CategoryName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Description)
-                </td>
-            <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit Room Type</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Room Type Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete Room Type</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h1>Room Types</h1>
+<div class="tab-container">
+    @foreach (var item in Model.Category)
+    {
+        <div class="tab">
+            <img src="@item.Image" alt="@item.CategoryName" class="tab-image" height="150px" width="325px"/>
+            <div class="tab-content">
+                <h3>@Html.DisplayFor(modelItem => item.CategoryName)</h3>
+                <p>@Html.DisplayFor(modelItem => item.Price) RON per day</p>
+                <p>@Html.DisplayFor(modelItem => item.Description)</p>
+                @if (User.IsInRole("Admin"))
+                {
+                    <div>
+                        <div>
+                            <button class="edit-button" asp-page="./Edit" asp-route-id="@item.Id">Edit Room Type</button><br />
+                            <button class="details-button" asp-page="./Details" asp-route-id="@item.Id">Room Type Details</button><br />
+                            <button class="delete-button" asp-page="./Delete" asp-route-id="@item.Id">Delete Room Type</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</div>

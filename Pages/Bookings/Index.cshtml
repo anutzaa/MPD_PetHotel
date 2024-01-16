@@ -5,10 +5,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>All Bookings</h1>
-
+@if (User.IsInRole("Admin"))
+{
+    <h1>All Bookings</h1>
+}
+else
+{
+    <h1>My Bookings</h1>
+}
 <p>
-    <a asp-page="Create">Add New Booking</a>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-page="Create">Add New Booking</a>
+    }
+    else
+    {
+        <a asp-page="/Bookings/UserBooking">Request a New Booking</a>
+    }
 </p>
 <table class="table">
     <thead>
@@ -31,7 +44,10 @@
             <th>
                 Total price
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -66,11 +82,14 @@
                         <text>N/A</text>
                     }
             </td>
+                @if (User.IsInRole("Admin"))
+                {
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Booking</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Booking Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete Booking</a>
             </td>
+                }
         </tr>
 }
     </tbody>

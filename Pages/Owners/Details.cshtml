@@ -31,6 +31,20 @@
         </dd>
     </dl>
 </div>
+
+<div>
+    <h4>Pets</h4>
+    <hr />
+    <ul>
+        @foreach (var pet in Model.Owner.Pets) //exception here
+        {
+            <li>
+                @Html.DisplayFor(modelItem => pet.PetName)
+            </li>
+        }
+    </ul>
+</div>
+
 <div>
     <a asp-page="./Edit" asp-route-id="@Model.Owner.Id">Edit Owner Details</a> |
     <a asp-page="./Index">Back to Owner List</a>

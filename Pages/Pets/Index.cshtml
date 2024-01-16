@@ -6,10 +6,12 @@
 }
 
 <h1>Pet List</h1>
-
-<p>
-    <a asp-page="Create">Add New Pet</a>
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-page="Create">Add New Pet</a>
+    </p>
+}
 <table class="table">
     <thead>
         <tr>
@@ -22,20 +24,26 @@
             <th>
                 @Html.DisplayNameFor(model => model.Pet[0].Age)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Pet[0].Owner.OwnerName)
-            </th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th>
+                    @Html.DisplayNameFor(model => model.Pet[0].Owner.OwnerName)
+                </th>
+            }
             <th>
                 @Html.DisplayNameFor(model => model.Pet[0].hasSpecialNeeds)
             </th>
-            <th></th>
+            @if (User.IsInRole("Admin"))
+            {
+                <th></th>
+            }
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model.Pet) {
         <tr>
             <td>
-                    @Html.DisplayFor(modelItem => item.PetName)
+                @Html.DisplayFor(modelItem => item.PetName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Species)
@@ -43,9 +51,12 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Age)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Owner.OwnerName)
-            </td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th>
+                        @Html.DisplayFor(modelItem => item.Owner.OwnerName)
+                    </th>
+                }
             <td>
                     @if (item.hasSpecialNeeds)
                     {
@@ -56,11 +67,14 @@
                         <text>No</text>
                     }
             </td>
+                @if (User.IsInRole("Admin"))
+                {
             <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit Pet</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Pet Details</a> |
                 <a asp-page="./Delete" asp-route-id="@item.Id">Delete Pet</a>
             </td>
+                }
         </tr>
 }
     </tbody>

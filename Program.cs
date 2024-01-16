@@ -15,9 +15,11 @@ policy.RequireRole("Admin"));
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Bookings");
+    options.Conventions.AuthorizeFolder("/Owners"); 
     options.Conventions.AllowAnonymousToPage("/Categories/Index");
     options.Conventions.AllowAnonymousToPage("/Categories/Details");
     options.Conventions.AuthorizeFolder("/Owners", "AdminPolicy");
+    options.Conventions.AuthorizeFolder("/Rooms", "AdminPolicy"); 
 })
     .AddMvcOptions(options =>
     {

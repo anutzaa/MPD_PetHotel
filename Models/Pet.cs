@@ -8,6 +8,7 @@ namespace PetHotel.Models
         public int Id { get; set; }
 
         [Display(Name = "Pet Name")]
+        [RegularExpression(@"(?:[A-Z][a-z]*\s*)+", ErrorMessage = "Name must start with a capital letter!")]
         public string PetName { get; set; }
         public string Species { get; set; }
   
@@ -22,5 +23,6 @@ namespace PetHotel.Models
         //navigation property for Owner
         public int? OwnerId { get; set; }
         public Owner? Owner { get; set; }
+
     }
 }

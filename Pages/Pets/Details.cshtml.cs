@@ -28,7 +28,9 @@ namespace PetHotel.Pages.Pets
                 return NotFound();
             }
 
-            var pet = await _context.Pet.Include(p => p.Owner).FirstOrDefaultAsync(m => m.Id == id);
+            var pet = await _context.Pet.Include(p => p.Owner)
+                .ThenInclude(p => p.Pets)
+                .FirstOrDefaultAsync(m => m.Id == id);
 
             if (pet == null)
             {
